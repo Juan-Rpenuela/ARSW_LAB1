@@ -37,5 +37,43 @@
         - **`run()`**: Ejecuta el código uno tras otro en el hilo principal
 
 
+**Parte II - Ejercicio Black List Search**
+
+### Contexto y Descripción del Problema
+
+En el desarrollo de un software de vigilancia automática de seguridad informática, es necesario validar direcciones IP contra varios miles de listas negras (blacklists) que contienen hosts maliciosos conocidos. El objetivo es identificar y reportar aquellas direcciones IP que aparezcan en al menos cinco de estas listas, considerándolas como no confiables.
+
+Para optimizar el proceso de búsqueda, se propone paralelizar la tarea utilizando múltiples hilos. Cada hilo será responsable de revisar una parte específica del total de listas negras, permitiendo así que la validación se realice de manera más eficiente y rápida.
+
+
+1. Creacion de la clase `ThreadConsult` la cual realizará una consulta en un rango del conjunto de las listas negras
+
+    ![ThreadConsultClass](./img/ThreadConsult.png)
+
+2. Modificación del método `checkHost` para la utilización de la clase hilo cumpliendo los requisitos
+
+- Recibir como parámetro el número de hilos a usar.
+- Dividir el espacio de búsqueda entre los N hilos.
+- Iniciar todos los hilos y esperar a que terminen (usando `join`).
+- Sumar los resultados de todos los hilos y decidir si la IP es confiable o no, según la cantidad de ocurrencias encontradas.
+- Mantener el log que informa cuántas listas negras se revisaron, garantizando que la información sea verídica bajo el esquema paralelo.
+
+ ![ThreadConsultClass](./img/CheckHost.png)
+
+ 3. Prueba de la implementación
+
+- 200.24.24.55
+
+ ![TestTrustlyHost](./img/TestTrustlyHost.PNG)
+
+ - 200.24.34.55
+
+![TestNotTrustlyHost](./img/TestNotTrustlyHost.PNG)
+
+
+**Parte III - Evaluación de Desempeño**
+
+
+
 
 
